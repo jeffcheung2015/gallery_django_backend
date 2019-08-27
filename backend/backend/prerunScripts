@@ -1,0 +1,4 @@
+tags = ['Cat','Dog','Animals','Flowers','Scenery','Monkey', 'Mammals','Lion','Human',
+'Rabbit', 'Gorilla', 'Bird', 'Owl','Pig','Fish', 'Bear']
+for tag in tags:
+  Tag.objects.create(tag_name=tag)
