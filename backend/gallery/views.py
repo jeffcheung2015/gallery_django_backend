@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime, timedelta
 from functools import reduce
 import operator
+import os
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login
@@ -60,7 +61,9 @@ def upsert_image(req):
             is_delete_success = False
             print(">>> upsert_image.to_be_deleted_img.exists:", to_be_deleted_img.exists())
             if to_be_deleted_img.exists():
+                delete_img_path = to_be_deleted_img[0].image_file.path
                 to_be_deleted_img[0].delete()
+                os.remove(delete_img_path)
                 img_date = datetime.fromtimestamp(int(req_data["created_at"])/1000).date()
                 that_day_activity = Activity.objects.filter(date__date=img_date)
                 print(">>> upsert_image.that_day_activity.exists:", that_day_activity.exists())
@@ -110,10 +113,14 @@ def update_avatar(req):
         print(">>> update_avatar.req_data:", req_data)
         profile = Profile.objects.filter(user=user_id)[0]
         print(">>> update_avatar.profile: ", profile)
+        prev_avatar_path = profile.avatar.path
+
         update_avatar_form = UpdateAvatarForm(req_data, req.FILES, instance=profile)
         print(">>> update_avatar.update_avatar_form: ", update_avatar_form)
         if update_avatar_form.is_valid():
             update_avatar_form.save()
+            if prev_avatar_path.split("/")[-1] != 'noavatar.jpg':
+                os.remove(prev_avatar_path)
             return Response({
                 'resp_code': '00000'
             })
