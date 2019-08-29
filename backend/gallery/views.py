@@ -189,19 +189,20 @@ def get_image(req):
     print(">>> get_image, req.GET:", req.GET)
     try:
         print(">>> get_image, req.GET:", req.GET.get('page'))
+        user_id = req.GET.get("userId")
+        user_query = Image.objects.filter(user=user_id) if user_id != '-1' else Image.objects.all()
         if req.GET.getlist("tags"):
             print(">>> get_image, req.GET.get('tags')", req.GET.getlist("tags"))
             tags = req.GET.getlist("tags")
-            tags_query = Image.objects.filter(tags=int(tags[0]))
+            tags_query = user_query.filter(tags=int(tags[0]))
             for i in range(1, len(tags)):
                 tags_query = tags_query.filter(tags=int(tags[i]))
             images = tags_query.distinct().order_by("created_at")
         else:
-            images = Image.objects.all().order_by("created_at")
+            images = user_query.order_by("created_at")
 
         page = req.GET.get("page")
         img_per_page = req.GET.get("imgPerPage")
-        user_id = req.GET.get("userId")
         paginator = Paginator(images, int(img_per_page))
         data = paginator.page(page)
         curr_page = page
