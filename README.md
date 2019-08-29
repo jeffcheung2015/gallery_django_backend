@@ -1,4 +1,4 @@
-this web app is currently hosted in heroku free version <br/>
+This web app is currently hosted in heroku free version <br/>
 https://djangoreactproject.herokuapp.com/<br/>
 <br/>
 <br/>
