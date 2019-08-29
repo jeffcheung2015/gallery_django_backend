@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'orp_-s85lnv2d4_dj*_r%sk$q1r@s9ykd&rn%#49j@&9%x9nqh'
-
+GOOGLE_RECAPTCHA_SECRET_KEY = '6LcpqLUUAAAAAFUg1rAzd_pxPSr2-2rsAl4kfU3F'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -146,7 +146,9 @@ CORS_ORIGIN_ALLOW_ALL = False
 # for dev react purpose
 CORS_ORIGIN_WHITELIST = (
        # this is for react dev server one
+       'http://127.0.0.1:3000',
        'http://localhost:3000',
        # this is for built react one
        'http://127.0.0.1:8000',
+       'http://localhost:8000',
 )

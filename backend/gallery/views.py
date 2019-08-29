@@ -1,6 +1,7 @@
 # Create your views here.
 import jwt
 import uuid
+import requests
 from datetime import datetime, timedelta
 from functools import reduce
 import operator
@@ -267,6 +268,19 @@ def user_signup(req):
         username = req_data['username']
         password = req_data['password']
         email = req_data['email']
+        recaptcha_token = req_data['recaptchaToken']
+        print(">>> user_signup, recaptcha_token:", recaptcha_token)
+        data = {
+            'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_token
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        resp_res = r.json()
+        print(">>> user_signup, resp_res:", resp_res)
+        if not resp_res['success']:
+            return Response({
+                'resp_code': '99998'
+            })
 
         if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
             return Response({
@@ -311,6 +325,19 @@ def user_login(req):
     try:
         username = req_data['username']
         password = req_data['password']
+        recaptcha_token = req_data['recaptchaToken']
+        print(">>> user_login, recaptcha_token:", recaptcha_token)
+        data = {
+            'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_token
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        resp_res = r.json()
+        print(">>> user_login, resp_res:", resp_res)
+        if not resp_res['success']:
+            return Response({
+                'resp_code': '99998'
+            })
     except KeyError:
         return Response({
             'resp_code': '00001'
