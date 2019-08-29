@@ -14,37 +14,31 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
-# from customers import views
 from django.conf.urls import url
 from gallery import views
 from rest_framework_simplejwt import views as jwt_views
 from django.conf import settings
-from django.contrib.staticfiles.urls import static
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
+from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
+from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', jwt_views.TokenVerifyView.as_view(), name='token_verify'),
 
-    url(r'^getuser$', views.get_user),
-    url(r'^signup$', views.user_signup),
-    url(r'^login$', views.user_login),
-    url(r'^logout$', views.user_logout),
+    path('api/getuser', views.get_user),
+    path('api/signup', views.user_signup),
+    path('api/login', views.user_login),
+    path('api/logout', views.user_logout),
 
-    path('getimage/', views.get_image),
-    # path('getuserimage/<int:user_id>', views.get_imgs_owned_by_user),
-    path('gettags/', views.get_tags),
+    path('api/getimage/', views.get_image),
+    path('api/gettags', views.get_tags),
     path('api/upsert', views.upsert_image),
     path('api/updateuser', views.update_user),
     path('api/updateavatar', views.update_avatar),
 
-
 ] + staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# url(r'^api/customers/$', views.customers_list),
-# url(r'^api/customers/(?P<pk>[0-9]+)$', views.customers_detail),
-# url(r'^api/gallery/(?P<pageNo>[0-9]+)$', views.image_page),
+# to defer the matching so that /api/uploads or /api/static wouldnt be captured by the template url
+urlpatterns += [re_path(r'^(.*)$', TemplateView.as_view(template_name='index.html'))]

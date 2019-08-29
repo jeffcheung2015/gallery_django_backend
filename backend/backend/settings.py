@@ -14,7 +14,7 @@ import os
 from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +26,7 @@ SECRET_KEY = 'orp_-s85lnv2d4_dj*_r%sk$q1r@s9ykd&rn%#49j@&9%x9nqh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -40,9 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-
-    # Customized application
-    # 'customers',
     'gallery',
 ]
 
@@ -77,7 +74,7 @@ SIMPLE_JWT = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,13 +106,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
@@ -137,13 +128,14 @@ USE_L10N = True
 USE_TZ = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL = '/'
+MEDIA_URL = '/api/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "build/static"),
     os.path.join(BASE_DIR, "media/static"),
 )
 
@@ -153,5 +145,8 @@ LOGOUT_REDIRECT_URL = '/'
 CORS_ORIGIN_ALLOW_ALL = False
 # for dev react purpose
 CORS_ORIGIN_WHITELIST = (
+       # this is for react dev server one
        'http://localhost:3000',
+       # this is for built react one
+       'http://127.0.0.1:8000',
 )
