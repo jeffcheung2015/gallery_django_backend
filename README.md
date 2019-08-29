@@ -3,7 +3,7 @@ https://djangoreactproject.herokuapp.com/<br/>
 <br/>
 <br/>
 clone backend:<br/>
-this repository<br/>
+this repository<br/><br/>
 clone frontend:<br/>
 https://gitlab.com/jeffcheung2015/react-gallery-project<br/>
 
