@@ -2,6 +2,10 @@ This web app is currently hosted in heroku free version <br/>
 https://djangoreactproject.herokuapp.com/<br/>
 <br/>
 <br/>
+clone backend:<br/>
+this repository<br/>
+clone frontend:<br/>
+https://gitlab.com/jeffcheung2015/react-gallery-project<br/>
 
 Steps to build both backend and frontend:<br/>
 clone both backend and frontend <br/>
