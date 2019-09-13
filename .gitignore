@@ -1,4 +1,7 @@
-/db.sqlite3
-/build
-/media/profile/*
-/media/uploads/*
+/backend/backend/db.sqlite3
+/elasticsearch-dir/*
+/backend/backend/media/profile/*
+/backend/backend/media/uploads/*
+venv/*
+c
+useful.txt

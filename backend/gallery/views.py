@@ -1,4 +1,5 @@
 # Create your views here.
+import math
 import jwt
 import uuid
 import requests
@@ -19,7 +20,71 @@ from .forms import UpsertImageForm, UpdateUserForm, UpdateAvatarForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-from django.db.models import Q
+from .el_document import ImageDocument
+from elasticsearch_dsl import Q
+from django.core.files.storage import default_storage
+
+
+@api_view(['GET'])
+@permission_classes([])
+@authentication_classes([])
+def search_image(req):
+    try:
+        # must exist vars
+        curr_page = int(req.GET["page"])
+        img_per_page = int(req.GET["imgPerPage"])
+
+        img_doc_search = ImageDocument.search()
+        search_txt = req.GET.get("searchTxt") + "*"
+
+        final_query = img_doc_search.query(
+                'bool',
+                should=[
+                    Q('wildcard', image_name={'value':search_txt, 'boost':2}),
+                    Q('wildcard', image_desc=search_txt)
+                ]
+            )
+
+        img_count = final_query.count()
+        num_pages = int(math.ceil(img_count / img_per_page))
+        curr_page = min(curr_page, num_pages)
+
+        to_item_idx = curr_page * img_per_page
+        from_item_idx = max(0, to_item_idx - img_per_page)
+
+        print(">>> search_image.img_count:", img_count)
+
+        matched_imgs_docs = final_query[from_item_idx:to_item_idx]
+        matched_imgs_ids = []
+
+        for doc in matched_imgs_docs:
+            matched_imgs_ids += [doc.id]
+        images_query = Image.objects.filter(id__in=matched_imgs_ids)
+        print("###", num_pages, images_query, matched_imgs_ids, from_item_idx, to_item_idx)
+        tags = req.GET.getlist("tags")
+        for tag in tags:
+            images_query = images_query.filter(tags=int(tag))
+        matched_imgs = images_query.distinct().order_by("created_at")
+
+        img_serializer = ImageSerializer(matched_imgs, many=True)
+        print("matched_imgs: ", matched_imgs)
+        print("count:", len(matched_imgs))
+        print("elasticsearch_query: ", final_query.to_dict())
+
+        return Response({
+            'resp_code': '00000',
+            'count': len(matched_imgs),
+            # 'data': [img.id for img in matched_imgs],
+            'data': img_serializer.data,
+            'img_count': img_count,
+            'num_pages': num_pages,
+            'curr_page': int(curr_page)
+        })
+    except Exception as e:
+        print("Exception happens, ", e)
+        return Response({
+            'resp_code': "99999"
+        })
 
 @api_view(['POST'])
 @permission_classes([])
@@ -62,9 +127,10 @@ def upsert_image(req):
             is_delete_success = False
             print(">>> upsert_image.to_be_deleted_img.exists:", to_be_deleted_img.exists())
             if to_be_deleted_img.exists():
-                delete_img_path = to_be_deleted_img[0].image_file.path
+                delete_img_path = to_be_deleted_img[0].image_file.__str__()
+                print(">>> upsert_image.delete_img_path:", delete_img_path)
                 to_be_deleted_img[0].delete()
-                os.remove(delete_img_path)
+                default_storage.delete(delete_img_path)
                 img_date = datetime.fromtimestamp(int(req_data["created_at"])/1000).date()
                 that_day_activity = Activity.objects.filter(date__date=img_date)
                 print(">>> upsert_image.that_day_activity.exists:", that_day_activity.exists())
@@ -101,7 +167,6 @@ def upsert_image(req):
             'resp_code': '99999'
         })
 
-
 @api_view(['POST'])
 @permission_classes([])
 def update_avatar(req):
@@ -114,14 +179,14 @@ def update_avatar(req):
         print(">>> update_avatar.req_data:", req_data)
         profile = Profile.objects.filter(user=user_id)[0]
         print(">>> update_avatar.profile: ", profile)
-        prev_avatar_path = profile.avatar.path
-
+        prev_avatar_path = profile.avatar.__str__()
         update_avatar_form = UpdateAvatarForm(req_data, req.FILES, instance=profile)
         print(">>> update_avatar.update_avatar_form: ", update_avatar_form)
         if update_avatar_form.is_valid():
             update_avatar_form.save()
             if prev_avatar_path.split("/")[-1] != 'noavatar.jpg':
-                os.remove(prev_avatar_path)
+                print(">>> update_avatar.prev_avatar_path:", prev_avatar_path)
+                default_storage.delete(prev_avatar_path)
             return Response({
                 'resp_code': '00000'
             })
@@ -227,7 +292,7 @@ def get_image(req):
         })
 
     img_serializer = ImageSerializer(data, many=True)
-    print(">>> get_image", img_serializer.data)
+    print(">>> get_image.data", dir(img_serializer))
     return Response({
         'resp_code': '00000',
         'data': img_serializer.data,

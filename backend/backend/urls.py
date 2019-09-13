@@ -39,6 +39,8 @@ urlpatterns = [
     path('api/updateuser', views.update_user),
     path('api/updateavatar', views.update_avatar),
 
+    path('api/searchimage/', views.search_image)
+
 ] + staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # to defer the matching so that /api/uploads or /api/static wouldnt be captured by the template url
 urlpatterns += [re_path(r'^(.*)$', TemplateView.as_view(template_name='index.html'))]

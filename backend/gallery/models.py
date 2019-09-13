@@ -16,7 +16,7 @@ class Image(models.Model):
 
 # last_edit is used to store the last edit time of the avatar and user related info
 class Profile(models.Model):
-    avatar = models.ImageField(upload_to='profile/',null=True, blank=True, default='static/noavatar.jpg')
+    avatar = models.ImageField(upload_to='profile/',null=True, blank=True, default='noavatar.jpg')
     last_edit = models.DateTimeField(null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
