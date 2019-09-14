@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'aakmdcrdqeaayo',
+        'NAME': 'ebdb',
         'USER': 'djangodbadmin',
         'PASSWORD': 'eQX13fcGPa5sfYE5dZXW',
         'HOST': 'aakmdcrdqeaayo.carcvihijgzg.ap-southeast-1.rds.amazonaws.com',
