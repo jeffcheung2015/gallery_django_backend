@@ -26,7 +26,7 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6LcpqLUUAAAAAFUg1rAzd_pxPSr2-2rsAl4kfU3F'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'http://djangoreact-env.vms6bg9ydp.ap-southeast-1.elasticbeanstalk.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'http://django-dev.ap-southeast-1.elasticbeanstalk.com/']
 
 
 # Application definition
@@ -106,10 +106,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'aa1rczpok98e1ft',
-        'USER': 'djangoproj',
-        'PASSWORD': 'fzugDC2z',
-        'HOST': 'aa1rczpok98e1ft.carcvihijgzg.ap-southeast-1.rds.amazonaws.com',
+        'NAME': 'aakmdcrdqeaayo',
+        'USER': 'djangodbadmin',
+        'PASSWORD': 'eQX13fcGPa5sfYE5dZXW',
+        'HOST': 'aakmdcrdqeaayo.carcvihijgzg.ap-southeast-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }

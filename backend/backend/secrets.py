@@ -3,9 +3,9 @@ AWS_SECRET_ACCESS_KEY = 'VMGw4lvdr5miuKEPVI2kNUvBjMloL1xmU1WOdyEe'
 
 
 # rds username, password, domain
-# username: django_admin
+# username: djangodbadmin
 # password: eQX13fcGPa5sfYE5dZXW
-# database-1.carcvihijgzg.ap-southeast-1.rds.amazonaws.com
+# aakmdcrdqeaayo.carcvihijgzg.ap-southeast-1.rds.amazonaws.com 
 
 
 # HTTPS Git credentials for AWS CodeCommit [IAM username]
