@@ -231,7 +231,7 @@ AWS_DEFAULT_ACL = None
 ELASTICSEARCH_DSL={
     'default': {
         # 'hosts': 'localhost:9200'
-        'hosts': 'https://search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com/'
+        'hosts': 'https://search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com/',
         'port': 9200,
         'use_ssl': True,
         'verify_certs': True,
