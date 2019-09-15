@@ -33,6 +33,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['django-dev.ap-southeast-1.elasticbeanstalk.com']
 
+import requests
+
+########## ALLOWED_HOSTS
+from requests.exceptions import ConnectionError
+
+url = "http://169.254.169.254/latest/meta-data/public-ipv4"
+try:
+    r = requests.get(url)
+    instance_ip = r.text
+    ALLOWED_HOSTS += [instance_ip]
+except ConnectionError:
+    error_msg = "You can only run production settings on an AWS EC2 instance"
+    raise ImproperlyConfigured(error_msg)
+########## END ALLOWED_HOSTS
 
 # Application definition
 
