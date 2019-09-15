@@ -199,7 +199,7 @@ CORS_ORIGIN_WHITELIST = (
 ELASTICSEARCH_DSL={
     'default': {
         # 'hosts': 'localhost:9200'
-        'hosts': 'https://search-djangoreact-ihza2yuaevtkxmfs24c24bckyq.us-east-2.es.amazonaws.com/'
+        'hosts': 'https://search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com/'
     },
 }
 # AWS
