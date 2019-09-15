@@ -424,7 +424,7 @@ def user_login(req):
             login(req, user)
             # have the 00000 resp_code inserted
             refresh = RefreshToken.for_user(user)
-            print(refresh)
+            print(">>> user_login.RefreshToken:", refresh)
             return Response({
                 'resp_code': "00000",
                 'access': str(refresh.access_token),
@@ -458,8 +458,7 @@ def user_logout(req):
 @api_view(['POST'])
 @permission_classes([])
 def get_user(req):
-    print(">>> get_user.req.data: ", req.data)
-    req_data = req.data
+    print(">>> get_user.req.POST: ", req.POST, ',req.META:', req.META)
 
     try:
         auth_header_str = req.META.get('HTTP_AUTHORIZATION')
