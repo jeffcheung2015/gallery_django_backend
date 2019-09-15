@@ -227,21 +227,15 @@ STATICFILES_FINDERS = (
 )
 AWS_DEFAULT_ACL = None
 
-elastic_search_host = 'https://search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com/'
-awsauth = AWS4Auth(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_REGION_NAME, 'es')
-
-es = Elasticsearch(
-    hosts=[{'host': elastic_search_host, 'port': 443}],
-    http_auth=awsauth,
-    use_ssl=True,
-    verify_certs=True,
-    connection_class=RequestsHttpConnection
-)
-
 # elasticsearch
 ELASTICSEARCH_DSL={
     'default': {
         # 'hosts': 'localhost:9200'
         'hosts': 'https://search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com/'
+        'port': 9200,
+        'use_ssl': True,
+        'verify_certs': True,
+        'http_auth': AWS4Auth(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_REGION_NAME, 'es'),
+        'connection_class': RequestsHttpConnection
     },
 }
