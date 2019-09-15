@@ -227,7 +227,7 @@ STATICFILES_FINDERS = (
 )
 AWS_DEFAULT_ACL = None
 
-elastic_search_host = 'search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com'
+elastic_search_host = 'https://search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com/'
 awsauth = AWS4Auth(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_REGION_NAME, 'es')
 
 es = Elasticsearch(
