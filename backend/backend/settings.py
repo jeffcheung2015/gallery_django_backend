@@ -230,12 +230,12 @@ AWS_DEFAULT_ACL = None
 # elasticsearch
 ELASTICSEARCH_DSL={
     'default': {
-        # 'hosts': 'localhost:9200'
-        'hosts': 'https://search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com/',
-        'port': 9200,
-        'use_ssl': True,
-        'verify_certs': True,
-        'http_auth': AWS4Auth(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_REGION_NAME, 'es'),
-        'connection_class': RequestsHttpConnection
+        'hosts': 'localhost:9200'
+        # 'hosts': 'https://search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com/',
+        # 'port': 9200,
+        # 'use_ssl': True,
+        # 'verify_certs': True,
+        # 'http_auth': AWS4Auth(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_REGION_NAME, 'es'),
+        # 'connection_class': RequestsHttpConnection
     },
 }
