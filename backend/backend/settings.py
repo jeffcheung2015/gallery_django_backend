@@ -22,7 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'orp_-s85lnv2d4_dj*_r%sk$q1r@s9ykd&rn%#49j@&9%x9nqh'
-GOOGLE_RECAPTCHA_SECRET_KEY = '6LcpqLUUAAAAAFUg1rAzd_pxPSr2-2rsAl4kfU3F'
+# localhost secret key
+# GOOGLE_RECAPTCHA_SECRET_KEY = '6LcpqLUUAAAAAFUg1rAzd_pxPSr2-2rsAl4kfU3F'
+# 'django-dev.ap-southeast-1.elasticbeanstalk.com' secret key
+GOOGLE_RECAPTCHA_SECRET_KEY = '6LddeLgUAAAAAETSEErsr7dG9lJhtxFBXmFPhf7U'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
