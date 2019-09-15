@@ -468,7 +468,7 @@ def get_user(req):
         decoded_token = jwt.decode(access_token, settings.SECRET_KEY, algorithms=['HS256'])
         print(">>> get_user.decoded_token: ", decoded_token)
         user_id = decoded_token["user_id"]
-        print(">>> get_user.user_id:", user_id")
+        print(">>> get_user.user_id:", user_id)
         user = User.objects.get(id=int(user_id))
         print(">>> get_user.user:", user)
         profile = Profile.objects.filter(user=user_id)[0]

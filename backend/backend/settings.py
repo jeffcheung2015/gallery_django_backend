@@ -181,6 +181,7 @@ LOGOUT_REDIRECT_URL = '/'
 CORS_ORIGIN_ALLOW_ALL = False
 # for dev react purpose
 CORS_ORIGIN_WHITELIST = (
+       'http://django-dev.ap-southeast-1.elasticbeanstalk.com',
        # this is for react dev server one
        'http://127.0.0.1:3000',
        'http://localhost:3000',
