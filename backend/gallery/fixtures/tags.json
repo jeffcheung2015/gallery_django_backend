@@ -1,0 +1,198 @@
+[
+{
+  "model": "gallery.tag",
+  "pk": 1,
+  "fields": {
+    "tag_name": "Cat"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 2,
+  "fields": {
+    "tag_name": "Dog"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 3,
+  "fields": {
+    "tag_name": "Animals"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 4,
+  "fields": {
+    "tag_name": "Flowers"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 5,
+  "fields": {
+    "tag_name": "Scenery"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 6,
+  "fields": {
+    "tag_name": "Monkey"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 7,
+  "fields": {
+    "tag_name": "Mammals"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 8,
+  "fields": {
+    "tag_name": "Lion"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 9,
+  "fields": {
+    "tag_name": "Human"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 10,
+  "fields": {
+    "tag_name": "Rabbit"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 11,
+  "fields": {
+    "tag_name": "Gorilla"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 12,
+  "fields": {
+    "tag_name": "Bird"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 13,
+  "fields": {
+    "tag_name": "Owl"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 14,
+  "fields": {
+    "tag_name": "Pig"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 15,
+  "fields": {
+    "tag_name": "Fish"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 16,
+  "fields": {
+    "tag_name": "Bear"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 17,
+  "fields": {
+    "tag_name": "Reptile"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 18,
+  "fields": {
+    "tag_name": "Insect"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 19,
+  "fields": {
+    "tag_name": "Sponge"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 20,
+  "fields": {
+    "tag_name": "Elephant"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 21,
+  "fields": {
+    "tag_name": "Whale"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 22,
+  "fields": {
+    "tag_name": "Shark"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 23,
+  "fields": {
+    "tag_name": "Penguin"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 24,
+  "fields": {
+    "tag_name": "Wolf"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 25,
+  "fields": {
+    "tag_name": "Turtle"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 26,
+  "fields": {
+    "tag_name": "Mouse"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 27,
+  "fields": {
+    "tag_name": "Goose"
+  }
+},
+{
+  "model": "gallery.tag",
+  "pk": 28,
+  "fields": {
+    "tag_name": "Kangaroo"
+  }
+}
+]

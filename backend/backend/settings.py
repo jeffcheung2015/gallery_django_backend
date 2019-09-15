@@ -14,6 +14,8 @@ import os
 import uuid
 from datetime import timedelta
 from urllib.request import urlopen
+from elasticsearch import Elasticsearch, RequestsHttpConnection
+from requests_aws4auth import AWS4Auth
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -28,6 +30,10 @@ SECRET_KEY = 'orp_-s85lnv2d4_dj*_r%sk$q1r@s9ykd&rn%#49j@&9%x9nqh'
 # GOOGLE_RECAPTCHA_SECRET_KEY = '6LcpqLUUAAAAAFUg1rAzd_pxPSr2-2rsAl4kfU3F'
 # 'django-dev.ap-southeast-1.elasticbeanstalk.com' secret key
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LddeLgUAAAAAETSEErsr7dG9lJhtxFBXmFPhf7U'
+
+
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -116,25 +122,13 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 
-DATABASES = {}
-if 'RDS_DB_NAME' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+}
 
 
 # Password validation
@@ -190,18 +184,7 @@ CORS_ORIGIN_WHITELIST = (
        'http://localhost:8000',
 )
 
-# ipython:
 
-
-
-
-# elasticsearch
-ELASTICSEARCH_DSL={
-    'default': {
-        # 'hosts': 'localhost:9200'
-        'hosts': 'https://search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com/'
-    },
-}
 # AWS
 from backend.secrets import (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
 
@@ -226,3 +209,22 @@ STATICFILES_FINDERS = (
 'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 AWS_DEFAULT_ACL = None
+
+elastic_search_host = 'search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com'
+awsauth = AWS4Auth(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_REGION_NAME, 'es')
+
+es = Elasticsearch(
+    hosts=[{'host': elastic_search_host, 'port': 443}],
+    http_auth=awsauth,
+    use_ssl=True,
+    verify_certs=True,
+    connection_class=RequestsHttpConnection
+)
+
+# elasticsearch
+ELASTICSEARCH_DSL={
+    'default': {
+        # 'hosts': 'localhost:9200'
+        'hosts': 'https://search-django-react-ft52f2ee6fdhtohze2fulmbo7y.ap-southeast-1.es.amazonaws.com/'
+    },
+}
