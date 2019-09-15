@@ -462,7 +462,8 @@ def get_user(req):
     req_data = req.data
 
     try:
-        auth_header_str = req.META['HTTP_AUTHORIZATION']
+        auth_header_str = req.META.get('HTTP_AUTHORIZATION')
+        print(">>> get_user.auth_header_str:", auth_header_str)
         access_token = auth_header_str.split()[1]
         decoded_token = jwt.decode(access_token, settings.SECRET_KEY, algorithms=['HS256'])
         print(">>> get_user.decoded_token: ", decoded_token)
