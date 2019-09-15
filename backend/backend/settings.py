@@ -31,7 +31,7 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6LddeLgUAAAAAETSEErsr7dG9lJhtxFBXmFPhf7U'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['django-dev.ap-southeast-1.elasticbeanstalk.com']
 
 
 # Application definition
