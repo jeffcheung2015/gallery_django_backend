@@ -31,7 +31,7 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6LddeLgUAAAAAETSEErsr7dG9lJhtxFBXmFPhf7U'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-dev.ap-southeast-1.elasticbeanstalk.com', 'localhost:8000', '127.0.0.1:8000', '172.31.37.220']
+ALLOWED_HOSTS = ['django-dev.ap-southeast-1.elasticbeanstalk.com', 'localhost', '127.0.0.1', '172.31.37.220']
 
 import requests
 
