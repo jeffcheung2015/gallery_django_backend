@@ -1,5 +1,9 @@
-This web app is currently hosted in heroku free version <br/>
-https://djangoreactproject.herokuapp.com/<br/>
+Hosted: AWS elastic beanstalk <br/>
+Database: AWS RDS <br/>
+Elastic search: AWS Elastic service <br/>
+Data storage: AWS S3 <br/>
+Version control: AWS CodeCommit <br/>
+http://django-dev.ap-southeast-1.elasticbeanstalk.com/<br/>
 <br/>
 <br/>
 clone backend:<br/>
