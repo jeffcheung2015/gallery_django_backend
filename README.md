@@ -9,7 +9,7 @@ http://django-dev.ap-southeast-1.elasticbeanstalk.com/<br/>
 clone backend:<br/>
 this repository<br/><br/>
 clone frontend:<br/>
-https://gitlab.com/jeffcheung2015/react-gallery-project<br/>
+https://github.com/jeffcheung2015/gallery_react_frontend<br/>
 
 Steps to build both backend and frontend:<br/>
 clone both backend and frontend <br/>
