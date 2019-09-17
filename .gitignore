@@ -1,3 +1,4 @@
+/backend/backend/secrets.py
 /backend/backend/db.sqlite3
 /elasticsearch-dir/*
 /backend/backend/media/profile/*
