@@ -60,7 +60,6 @@ def search_image(req):
         for doc in matched_imgs_docs:
             matched_imgs_ids += [doc.id]
         images_query = Image.objects.filter(id__in=matched_imgs_ids)
-        print("###", num_pages, images_query, matched_imgs_ids, from_item_idx, to_item_idx)
         tags = req.GET.getlist("tags")
         for tag in tags:
             images_query = images_query.filter(tags=int(tag))

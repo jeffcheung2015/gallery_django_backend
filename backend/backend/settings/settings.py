@@ -6,6 +6,7 @@ from .base import *
 # localhost secret key
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LcpqLUUAAAAAFUg1rAzd_pxPSr2-2rsAl4kfU3F'
 
+MEDIA_URL = '/api/'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (

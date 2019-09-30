@@ -12,7 +12,12 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["email", "password"]
-
+    def save(self, commit=True):
+        user = super(UpdateUserForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user
 
 class UpdateAvatarForm(forms.ModelForm):
     class Meta:
