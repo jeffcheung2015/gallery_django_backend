@@ -6,5 +6,5 @@
 
 backend/secrets.py
 media/profile/*
-media/upload/*
+media/uploads/*
 db.sqlite3
