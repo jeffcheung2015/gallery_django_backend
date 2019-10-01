@@ -3,7 +3,7 @@ Database: AWS RDS <br/>
 Elastic search: AWS Elastic service <br/>
 Data storage: AWS S3 <br/>
 Version control: AWS CodeCommit <br/>
-http://django-dev.ap-southeast-1.elasticbeanstalk.com/<br/>
+http://django-react-dev.ap-southeast-1.elasticbeanstalk.com/<br/>
 <br/>
 <br/>
 clone backend:<br/>
