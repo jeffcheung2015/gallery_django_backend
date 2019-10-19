@@ -16,8 +16,6 @@ clone both backend and frontend <br/>
 to run the server, run `source venv/bin/activiate`<br/>
 then go into backend folder<br/>
 run `python manage.py migrate` [only 1st time running]<br/>
-run `python manage.py shell`<br/>
-copy and paste the content of '/backend/backend/prerunScripts' into the shell and run them.<br/>
 run `python manage.py runserver`<br/>
 
 then for the frontend part,<br/>
